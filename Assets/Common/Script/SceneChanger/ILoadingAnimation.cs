@@ -11,7 +11,7 @@ using UnityEngine;
 //***********************************************
 public interface ILoadingAnimation
 {
-  void PlayInAnimation();
-  void PlayOutAnimation();
-  bool IsDone { get; }
+	void PlayInAnimation();
+	void PlayOutAnimation();
+	bool IsDone { get; }
 }

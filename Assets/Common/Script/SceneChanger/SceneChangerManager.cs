@@ -11,90 +11,90 @@ using UnityEngine;
 //*************************************************
 public class SceneChangerManager : UnitySingleton<SceneChangerManager>
 {
-  ISceneChanger sceneChanger;
-  ILoadingAnimation loadingAnimation;
+	ISceneChanger sceneChanger;
+	ILoadingAnimation loadingAnimation;
 
-  //シーン切り替え完了フラグ
-  bool isDone = true;
-  bool IsDone { get { return isDone; } }
+	//シーン切り替え完了フラグ
+	bool isDone = true;
+	bool IsDone { get { return isDone; } }
 
 	//インターフェース取得:UnityはインターフェースをSerializeFieldでセットできないので・・・
 	void Awake ()
-  {
-    sceneChanger = GetComponent<ISceneChanger>();
-    loadingAnimation = GetComponent<ILoadingAnimation>();	
+	{
+		sceneChanger = GetComponent<ISceneChanger>();
+		loadingAnimation = GetComponent<ILoadingAnimation>();	
 	}	
 
-  public void ChangeScene(string sceneName)
-  {
-    if (!isDone)
-      return;
+	public void ChangeScene(string sceneName)
+	{
+		if (!isDone)
+			return;
 
-    StartCoroutine(ChangeSceneCoroutine(sceneName));
-  }
+		StartCoroutine(ChangeSceneCoroutine(sceneName));
+	}
 
-  IEnumerator ChangeSceneCoroutine(string sceneName)
-  {
-    isDone = false;
+	IEnumerator ChangeSceneCoroutine(string sceneName)
+	{
+		isDone = false;
 
-    loadingAnimation.PlayInAnimation();
+		loadingAnimation.PlayInAnimation();
 
-    while(!loadingAnimation.IsDone)
-    {
-      yield return null;
-    }
+		while(!loadingAnimation.IsDone)
+		{
+			yield return null;
+		}
 
-    sceneChanger.ChangeScene(sceneName);
+		sceneChanger.ChangeScene(sceneName);
 
-    while(!sceneChanger.IsDone)
-    {
-      yield return null;
-    }
+		while(!sceneChanger.IsDone)
+		{
+			yield return null;
+		}
 
-    loadingAnimation.PlayOutAnimation();
+		loadingAnimation.PlayOutAnimation();
 
-    while (!loadingAnimation.IsDone)
-    {
-      yield return null;
-    }
+		while (!loadingAnimation.IsDone)
+		{
+			yield return null;
+		}
 
-    isDone = true;
-  }
+		isDone = true;
+	}
 
-  public void ReturnScene(string forceSceneName)
-  {
-    if (!isDone)
-      return;
+	public void ReturnScene(string forceSceneName)
+	{
+		if (!isDone)
+			return;
 
-    StartCoroutine(ReturnSceneCoroutine(forceSceneName));
-  }
+		StartCoroutine(ReturnSceneCoroutine(forceSceneName));
+	}
 
-  IEnumerator ReturnSceneCoroutine(string forceSceneName)
-  {
-    isDone = false;
+	IEnumerator ReturnSceneCoroutine(string forceSceneName)
+	{
+		isDone = false;
 
-    loadingAnimation.PlayInAnimation();
+		loadingAnimation.PlayInAnimation();
 
-    while (!loadingAnimation.IsDone)
-    {
-      yield return null;
-    }
+		while (!loadingAnimation.IsDone)
+		{
+			yield return null;
+		}
 
-    sceneChanger.ReturnScene(forceSceneName);
+		sceneChanger.ReturnScene(forceSceneName);
 
-    while (!sceneChanger.IsDone)
-    {
-      yield return null;
-    }
+		while (!sceneChanger.IsDone)
+		{
+			yield return null;
+		}
 
-    loadingAnimation.PlayOutAnimation();
+		loadingAnimation.PlayOutAnimation();
 
-    while (!loadingAnimation.IsDone)
-    {
-      yield return null;
-    }
+		while (!loadingAnimation.IsDone)
+		{
+			yield return null;
+		}
 
-    isDone = true;
+		isDone = true;
 
-  }
+	}
 }

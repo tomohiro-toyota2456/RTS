@@ -10,7 +10,7 @@ using System.Collections.Generic;
 //***********************************************
 public interface IPopup
 {
-  void Open();
-  void Close();
-  void AddClosedAction(System.Action action);
+	void Open();
+	void Close();
+	void AddClosedAction(System.Action action);
 }
