@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 //***********************************************
 //UnitManager
@@ -23,17 +24,28 @@ public class UnitManager : MonoBehaviour
 	[SerializeField]
 	CorePartModelConnectionData core;
 
-	public struct BattleUnitData
+	public class BattleUnitData
 	{
 		public Transform trans;//動いているモデル
 		public UnitData unitData;
 		//AIデータ？
 		//public UnitAI ai;みたいな
-		public bool isAlive;
+		public bool isAlive = false;
+		public bool isSelection = false;
 	}
+
+	static readonly int MaxUnitSum = 30;
 
 	List<BattleUnitData> unitList = new List<BattleUnitData>();
 	UserUnitData[] userUnitDataArray;
+
+	private void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.W))
+		{
+			CreateUnit(0);
+		}
+	}
 
 	public void SetDeck(UserUnitData[] userUnitDataArray)
 	{
@@ -68,7 +80,7 @@ public class UnitManager : MonoBehaviour
 		var c = CreateCoreModel(core);
 		var trans = PartsConnectionFunction.ConnectPartModels(c, h, lw, rw, l);
 
-		BattleUnitData battleUnitData;
+		BattleUnitData battleUnitData = new BattleUnitData();
 		battleUnitData.isAlive = true;
 		battleUnitData.trans = trans;
 		battleUnitData.unitData = unitData;
@@ -89,11 +101,30 @@ public class UnitManager : MonoBehaviour
 		return ins;
 	}
 
-	private void Update()
+	//選ばれているかチェック
+	public void SelectUnitFromPosition(System.Func<Vector3,bool> checkFunction)
 	{
-		if (Input.GetKeyDown(KeyCode.W))
+		for(int i = 0; i < unitList.Count; i++)
 		{
-			CreateUnit(0);
+			BattleUnitData data = unitList[i];
+			if(data.isAlive)
+			{
+				data.isSelection = checkFunction(data.trans.position);
+			}
+		}
+
+	}
+
+	//選ばれているユニットにアクションを起こさせる　今は動くだけ
+	public void ActionSelectionUnits(System.Action<UnitMover> unitAction)
+	{
+		for (int i = 0; i < unitList.Count;i++)
+		{
+			if(unitList[i].isSelection)
+			{
+				var mover = unitList[i].trans.gameObject.GetComponent<UnitMover>();
+				unitAction(mover);
+			}
 		}
 	}
 }
