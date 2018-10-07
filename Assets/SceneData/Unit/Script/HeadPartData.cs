@@ -9,7 +9,7 @@ using UnityEngine;
 //***********************************************
 //HeadPartData
 //***********************************************
-public class HeadPartData : PartBaseData
+public class HeadPartData : PartBaseData,IHeadPartDataViewer
 {
 	[SerializeField]
 	float fov;//視野だが、実際には円で表現するので視野の半径となる
@@ -18,4 +18,10 @@ public class HeadPartData : PartBaseData
 
 	public float Fov { get { return fov; } set { fov = value; } }
 	public int Accuracy { get { return accuracy; } set { accuracy = value; } }
+}
+
+public interface IHeadPartDataViewer : IPartBaseDataViewer
+{
+	float Fov { get; }
+	int Accuracy { get; }
 }

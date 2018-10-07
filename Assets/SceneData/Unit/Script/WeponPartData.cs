@@ -9,7 +9,7 @@ using UnityEngine;
 //***********************************************
 //
 //***********************************************
-public class WeponPartData : PartBaseData
+public class WeponPartData : PartBaseData,IWeponPartDataViewer
 {
 	[SerializeField]
 	float atk;
@@ -31,4 +31,14 @@ public class WeponPartData : PartBaseData
 	public float Range { get { return range; } set { range = value; } }
 	public int CriticalPer { get { return criticalPer; } set { criticalPer = value; } }
 	public int[] AttributeIds { get { return attributeIds; } set { attributeIds = value; } }
+}
+
+public interface IWeponPartDataViewer : IPartBaseDataViewer
+{
+	float Atk { get; }
+	float FillingSec { get; }
+	int Accuracy { get; }
+	float Range { get; }
+	int CriticalPer { get; }
+	int[] AttributeIds { get; }
 }
