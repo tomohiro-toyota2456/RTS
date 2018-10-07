@@ -10,7 +10,7 @@ using UnityEngine;
 //PartBaseData
 //各部位の基礎部分データ
 //***********************************************
-public class PartBaseData : ScriptableObject
+public class PartBaseData : ScriptableObject,IPartBaseDataViewer
 {
 	[SerializeField]
 	int id;
@@ -26,4 +26,12 @@ public class PartBaseData : ScriptableObject
 	public int Hp { get { return hp; } set { hp = value; } }
 	public int ModelId { get { return modelId; } set { modelId = value; } }
 
+}
+
+public interface IPartBaseDataViewer
+{
+	int Id { get; }
+	int Cost { get; }
+	int Hp { get; }
+	int ModelId { get; }
 }
