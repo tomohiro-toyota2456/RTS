@@ -26,6 +26,7 @@ public class UnitManager : MonoBehaviour
 
 	public class BattleUnitData
 	{
+		public BulletReceiver bulletReceiver;
 		public Transform trans;//動いているモデル
 		public UnitData unitData;
 		//AIデータ？
@@ -84,6 +85,14 @@ public class UnitManager : MonoBehaviour
 		battleUnitData.isAlive = true;
 		battleUnitData.trans = trans;
 		battleUnitData.unitData = unitData;
+		battleUnitData.bulletReceiver = new BulletReceiver();
+		var coreRepeater = c.GetComponent<BulletHitRepeater>();
+		var legRepeater = l.GetComponent<BulletHitRepeater>();
+
+		BulletHitRepeater[] repeaters = new BulletHitRepeater[2] { coreRepeater, legRepeater };
+		battleUnitData.bulletReceiver.Init(repeaters);
+
+		battleUnitData.bulletReceiver.SetLayer(1);
 
 		unitList.Add(battleUnitData);
 	}
