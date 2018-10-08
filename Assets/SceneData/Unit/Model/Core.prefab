@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 33549588693127408}
   - component: {fileID: 23890175898666016}
   - component: {fileID: 65723656192509016}
+  - component: {fileID: 114547616056808064}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -83,6 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4454287349139074}
   - component: {fileID: 114215248087302658}
+  - component: {fileID: 114610296018326738}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -228,3 +230,27 @@ MonoBehaviour:
   leftWeponConnectionTrans: {fileID: 4247223988231414}
   rightWeponConnectionTrans: {fileID: 4214500456502706}
   legConnectionTrans: {fileID: 4454287349139074}
+--- !u!114 &114547616056808064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095942939750812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5747acbd99fff43448b724e644361c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114610296018326738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1643503453283526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3f93daed31ebf46841adfd039ff0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  senders:
+  - {fileID: 114547616056808064}

@@ -35,16 +35,36 @@ public class BulletComponent : MonoBehaviour
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	public void Init(int uniqueId,float atk,int accuracy,float range,int criticalPer,int[] attributeIds,IBulletDataViewer bulletDataViewer)
+	public void Init(int teamId,int uniqueId,IWeponPartDataViewer weponPartDataViewer,IBulletDataViewer bulletDataViewer)
 	{
 		bulletParam.uniqueId = uniqueId;//ショット自体のID　BulletDataのIDでもない
-		bulletParam.atk = atk;
-		bulletParam.accuracy = accuracy;
-		bulletParam.criticalPer = criticalPer;
-		bulletParam.buffIds = attributeIds;
+		bulletParam.atk = weponPartDataViewer.Atk;
+		bulletParam.accuracy = weponPartDataViewer.Accuracy;
+		bulletParam.criticalPer = weponPartDataViewer.CriticalPer;
+		bulletParam.buffIds = weponPartDataViewer.AttributeIds;
 		bulletParam.effectId = bulletDataViewer.HitEffectId;
-		this.range = range;
-		this.spd = bulletDataViewer.Speed;
+		this.range = weponPartDataViewer.Range;
+		this.spd = weponPartDataViewer.Spd;
+		SetLayer(teamId, weponPartDataViewer.Target);
+	}
+
+	public int SetLayer(int teamId,WeponPartData.AttackTarget target)
+	{
+		int layer = 0;
+		switch(target)
+		{
+			case WeponPartData.AttackTarget.Army:
+				layer = 11 + teamId;
+				break;
+			case WeponPartData.AttackTarget.EnemyArmy:
+				layer = 9 + teamId;
+				break;
+			case WeponPartData.AttackTarget.All:
+				layer = 13;
+				break;
+		}
+
+		return layer;
 	}
 
 	/// <summary>
@@ -55,6 +75,12 @@ public class BulletComponent : MonoBehaviour
 		if(collision.contacts.Length != 0)
 		{
 			bulletParam.hitPoint = collision.contacts[0].point;
+		}
+
+		var sender = collision.gameObject.GetComponent<BulletHitSender>();
+		if (sender != null)
+		{
+			sender.HitSendAction(bulletParam);
 		}
 	}
 

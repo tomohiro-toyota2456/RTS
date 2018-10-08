@@ -14,13 +14,13 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerBullet
+  - EnemyBullet
+  - PlayerBuff
+  - EnemyBuff
+  - AllBullet
+  - PlayerUnit
+  - EnemyUnit
   - 
   - 
   - 

@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114469452963865082}
   - component: {fileID: 195674188782951318}
   - component: {fileID: 114871079362674980}
+  - component: {fileID: 114030127026730236}
+  - component: {fileID: 114945383921724730}
   m_Layer: 0
   m_Name: Leg
   m_TagString: Untagged
@@ -128,6 +130,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114030127026730236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240135879455482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5747acbd99fff43448b724e644361c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114469452963865082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,6 +165,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 195674188782951318}
+--- !u!114 &114945383921724730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240135879455482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3f93daed31ebf46841adfd039ff0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  senders:
+  - {fileID: 114030127026730236}
 --- !u!195 &195674188782951318
 NavMeshAgent:
   m_ObjectHideFlags: 1
