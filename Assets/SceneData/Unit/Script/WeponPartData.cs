@@ -28,6 +28,8 @@ public class WeponPartData : PartBaseData,IWeponPartDataViewer
 	[SerializeField]
 	AttackTarget target;//当たるターゲット
 	[SerializeField]
+	WeponType weponType;//武器タイプ
+	[SerializeField]
 	int[] attributeIds;//特性ID 別の特性データからIDで引く用
 
 	//当たる陣営
@@ -36,6 +38,12 @@ public class WeponPartData : PartBaseData,IWeponPartDataViewer
 		Army,//自軍 Buff系
 		EnemyArmy,//敵軍 普通の攻撃向け
 		All//すべて 爆撃等
+	}
+
+	//武器種別
+	public enum WeponType
+	{
+		MachineGun,
 	}
 
 
@@ -47,6 +55,7 @@ public class WeponPartData : PartBaseData,IWeponPartDataViewer
 	public int BulletId { get { return bulletId; } set { bulletId = value; } }
 	public float Spd { get { return spd; } set { spd = value; } }
 	public AttackTarget Target { get { return target; } set { target = value; } } 
+	public WeponType WType { get { return weponType; }set { weponType = value; }  }
 	public int[] AttributeIds { get { return attributeIds; } set { attributeIds = value; } }
 }
 
@@ -60,5 +69,6 @@ public interface IWeponPartDataViewer : IPartBaseDataViewer
 	int BulletId { get; }
 	float Spd { get; }
 	WeponPartData.AttackTarget Target { get; }
+	WeponPartData.WeponType WType { get; }
 	int[] AttributeIds { get; }
 }
