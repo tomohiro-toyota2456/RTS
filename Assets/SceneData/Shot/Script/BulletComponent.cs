@@ -12,11 +12,13 @@ using UnityEngine;
 public class BulletComponent : MonoBehaviour
 {
 	[SerializeField]
-	Rigidbody rdbody;
+	protected Rigidbody rdbody;
 
-	BulletParam bulletParam;
-	float range;
-	float spd;
+	protected BulletParam bulletParam;
+	protected float range;
+	protected float spd;
+	protected Vector3 stPos;
+	protected Vector3 nowPos;
 
 	/// <summary>
 	/// 外部に送るようデータ
@@ -81,6 +83,35 @@ public class BulletComponent : MonoBehaviour
 		if (sender != null)
 		{
 			sender.HitSendAction(bulletParam);
+		}
+	}
+
+	/// <summary>
+	/// 発射
+	/// </summary>
+	virtual public void Shoot(Vector3 stPos,Vector3 edPos)
+	{
+		Vector3 vec = edPos - stPos;
+		vec = vec.normalized;
+		vec = vec * spd;
+
+		rdbody.velocity = vec.normalized;
+	}
+
+	private void Update()
+	{
+		Vector3 st = stPos;
+		Vector3 ed = nowPos;
+
+		//yの動きはみない
+		st.y = 0;
+		ed.y = 0;
+
+		var val = (ed - st).magnitude;
+
+		if(val >= range)
+		{
+			//消滅
 		}
 	}
 
