@@ -59,8 +59,24 @@ GameObject:
   - component: {fileID: 23880366183528254}
   - component: {fileID: 65534173246386936}
   - component: {fileID: 114760365182143172}
+  - component: {fileID: 114499125694844526}
   m_Layer: 0
   m_Name: WeponLR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1928052712801536
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4987661736404224}
+  m_Layer: 0
+  m_Name: Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,13 +102,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063464141282194}
-  m_LocalRotation: {x: -0.49393368, y: -0, z: -0, w: 0.86949956}
+  m_LocalRotation: {x: -0.71496314, y: -0, z: -0, w: 0.6991622}
   m_LocalPosition: {x: 0, y: -1.09, z: 0.77}
   m_LocalScale: {x: 0.99997324, y: 0.9999811, z: 0.99998075}
-  m_Children: []
+  m_Children:
+  - {fileID: 4987661736404224}
   m_Father: {fileID: 4973142678720028}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -59.199, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -91.28, y: 0, z: 0}
 --- !u!4 &4973142678720028
 Transform:
   m_ObjectHideFlags: 1
@@ -105,6 +122,19 @@ Transform:
   m_Children:
   - {fileID: 4507275634086462}
   m_Father: {fileID: 4463117736514928}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4987661736404224
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928052712801536}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.04, z: -0.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4507275634086462}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23144882599654446
@@ -245,6 +275,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114499125694844526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832583469984634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed7bc0265dfb6345b983130c344b94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 114734446961186506, guid: 775d846d1e741cd488b0ab9be0d36563,
+    type: 2}
+  firingTransform: {fileID: 4987661736404224}
 --- !u!114 &114760365182143172
 MonoBehaviour:
   m_ObjectHideFlags: 1

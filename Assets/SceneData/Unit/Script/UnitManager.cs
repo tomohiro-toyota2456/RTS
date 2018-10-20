@@ -60,9 +60,19 @@ public class UnitManager : MonoBehaviour
 		userUnitData.headPart = ScriptableObject.CreateInstance<HeadPartData>();
 		userUnitData.rightWeponPart = ScriptableObject.CreateInstance<WeponPartData>();
 		userUnitData.leftWeponPart = ScriptableObject.CreateInstance<WeponPartData>();
+		userUnitData.leftWeponPart.Spd = 2;
+		userUnitData.rightWeponPart.Spd = 2;
+		userUnitData.leftWeponPart.Range = 1000;
+		userUnitData.rightWeponPart.Range = 1000;
 		userUnitData.legPart = ScriptableObject.CreateInstance<LegPartData>();
 		userUnitData.corePart = ScriptableObject.CreateInstance<CorePartData>();
 		return userUnitData;
+	}
+
+	BulletData Test2()
+	{
+		BulletData data = ScriptableObject.CreateInstance<BulletData>();
+		return data;
 	}
 
 	public void CreateUnit(int deckIdx)
@@ -89,10 +99,17 @@ public class UnitManager : MonoBehaviour
 		var coreRepeater = c.GetComponent<BulletHitRepeater>();
 		var legRepeater = l.GetComponent<BulletHitRepeater>();
 
+		//ヒットをまとめる
 		BulletHitRepeater[] repeaters = new BulletHitRepeater[2] { coreRepeater, legRepeater };
 		battleUnitData.bulletReceiver.Init(repeaters);
-
 		battleUnitData.bulletReceiver.SetLayer(1);
+
+		//武器初期化
+		var lwepon = lw.GetComponent<UnitShooter>();
+		var rwepon = rw.GetComponent<UnitShooter>();
+
+		lwepon.Init(0, userUnitData.leftWeponPart, Test2());
+		rwepon.Init(0, userUnitData.rightWeponPart, Test2());
 
 		unitList.Add(battleUnitData);
 	}
