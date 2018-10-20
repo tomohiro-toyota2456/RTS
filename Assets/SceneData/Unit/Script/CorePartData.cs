@@ -18,7 +18,11 @@ public class CorePartData : PartBaseData,CorePartDataViewer
 
 	public enum CoreType
 	{
-		LightWeight,//軽量型
+		Light,//軽量型
+		Heavy,//重量
+		Assault,//強襲
+		Support,//サポート
+
 	}
 
 	public CoreType CType { get { return coreType; } set { coreType = value; } }
