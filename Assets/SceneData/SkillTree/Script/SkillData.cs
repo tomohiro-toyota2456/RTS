@@ -13,7 +13,7 @@ using UnityEngine;
 //上昇値等は
 //SkillDetailParamで引く SkillData IDとLvで引く
 //***********************************************
-public class SkillData : ScriptableObject
+public class SkillData : ScriptableObject,SkillDataViewer
 {
 	[SerializeField]
 	int id;
@@ -44,4 +44,13 @@ public class SkillData : ScriptableObject
 	public Conditions Cond { get { return cond; } set { cond = value; } }
 	public int CondDetail { get { return condDetail; } set { condDetail = value; } }
 	public int MaxLv { get { return maxLv; } set { maxLv = value; } }
+}
+
+public interface SkillDataViewer
+{
+	int Id { get; }
+	SkillData.SkillType Type { get; }
+	SkillData.Conditions Cond { get; }
+	int CondDetail { get; }
+	int MaxLv { get; }
 }
