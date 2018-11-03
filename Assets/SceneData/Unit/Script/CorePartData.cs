@@ -9,7 +9,7 @@ using UnityEngine;
 //************************************************
 //CorePartData
 //************************************************
-public class CorePartData : PartBaseData,CorePartDataViewer
+public class CorePartData : PartBaseData,ICorePartDataViewer
 {
 	[SerializeField]
 	CoreType coreType;//コアのタイプ 種類によってLvボーナスに違いがでる
@@ -29,7 +29,7 @@ public class CorePartData : PartBaseData,CorePartDataViewer
 	public int SkillTreeId { get { return skillTreeId; } set { skillTreeId = value; } }
 }
 
-public interface CorePartDataViewer : IPartBaseDataViewer
+public interface ICorePartDataViewer : IPartBaseDataViewer
 {
 	CorePartData.CoreType CType { get; }
 	int SkillTreeId { get; }

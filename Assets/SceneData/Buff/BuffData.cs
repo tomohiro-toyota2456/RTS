@@ -9,7 +9,7 @@ using UnityEngine;
 //************************************************
 //BuffData
 //************************************************
-public class BuffData : ScriptableObject
+public class BuffData : ScriptableObject,IBuffViewer
 {
 	[SerializeField]
 	int id;
@@ -67,4 +67,16 @@ public class BuffData : ScriptableObject
 	public float EffectValue { get { return effectValue; } set { effectValue = value; } }
 	public float Interval { get { return interval; } set { interval = value; } }
 
+}
+
+public interface IBuffViewer
+{
+	int Id { get; }
+	BuffData.ParamType PType { get; }
+	BuffData.BehaviorType BeType { get; }
+	BuffData.BuffType BType { get; }
+	BuffData.EffectType EType { get; }
+	float BehaviorValue { get; }
+	float EffectValue { get; }
+	float Interval { get; }
 }

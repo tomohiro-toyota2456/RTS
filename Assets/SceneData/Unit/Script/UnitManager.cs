@@ -55,6 +55,8 @@ public class UnitManager : MonoBehaviour
 
 	UserUnitData Test()
 	{
+		var head = DatabaseManager.Instance.GetHeadPartDatabase().Search(1);
+
 		UserUnitData userUnitData = new UserUnitData();
 		userUnitData.name = "Test";
 		userUnitData.headPart = ScriptableObject.CreateInstance<HeadPartData>();

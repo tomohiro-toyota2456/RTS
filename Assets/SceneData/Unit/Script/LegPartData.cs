@@ -9,7 +9,7 @@ using UnityEngine;
 //***********************************************
 //LegPartData
 //***********************************************
-public class LegPartData : PartBaseData,LegPartDataViewer
+public class LegPartData : PartBaseData,ILegPartDataViewer
 {
 	[SerializeField]
 	int mobility;//機動力 移動性能+回避性能値
@@ -34,7 +34,7 @@ public class LegPartData : PartBaseData,LegPartDataViewer
 	public LegType Type { get { return legType; } set { legType = value; } }
 }
 
-public interface LegPartDataViewer : IPartBaseDataViewer
+public interface ILegPartDataViewer : IPartBaseDataViewer
 {
 	int Mobility { get; }
 	float[] Aptitudes { get; }
