@@ -9,7 +9,7 @@ using UnityEngine;
 //***********************************************
 //SkillDetailParamData
 //***********************************************
-public class SkillDetailParamData : ScriptableObject,SkillDetailParamDataViewer
+public class SkillDetailParamData : ScriptableObject,ISkillDetailParamDataViewer,IData
 {
 	[SerializeField]
 	int id;
@@ -38,7 +38,7 @@ public class SkillDetailParamData : ScriptableObject,SkillDetailParamDataViewer
 	public Params Param { get { return param; } set { param = value; } }
 }
 
-public interface SkillDetailParamDataViewer
+public interface ISkillDetailParamDataViewer
 {
 	int Id { get;}
 	int Lv { get; }

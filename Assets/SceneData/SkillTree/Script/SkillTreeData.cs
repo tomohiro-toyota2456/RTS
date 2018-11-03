@@ -9,7 +9,7 @@ using UnityEngine;
 //***********************************************
 //SkillTree
 //***********************************************
-public class SkillTreeData : ScriptableObject,SkillTreeDataViewer
+public class SkillTreeData : ScriptableObject,ISkillTreeDataViewer,IData
 {
 	[SerializeField]
 	int id;
@@ -38,7 +38,7 @@ public class SkillTreeData : ScriptableObject,SkillTreeDataViewer
 	public Node[] Nodes { get { return nodes; } set { nodes = value; } }
 }
 
-public interface SkillTreeDataViewer
+public interface ISkillTreeDataViewer
 {
 	int Id { get; }
 	int[] RootIdxs { get; }
